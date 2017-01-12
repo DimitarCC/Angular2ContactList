@@ -1,0 +1,63 @@
+<h3 *ngIf="isNewProduct">Add New Contact</h3>
+<h3 *ngIf="!isNewProduct">Edit Contact: {{contact?.name}} </h3>
+
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="form-horizontal col-xs-12 col-sm-9 col-md-6 col-lg-4">
+	<div *ngIf="contact?.id" class="form-group">
+		<label class="control-label col-xs-3 hidden-xs" for="id">ID:</label>
+		<div class="col-xs-12 col-sm-9">
+			<input class="form-control col-xs-12 col-sm-9" id="id" name="id" formControlName="id">
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-xs-3 hidden-xs" for="firstName">First Name:</label>
+		<div class="col-xs-12 col-sm-9">
+			<input class="form-control col-xs-12 col-sm-9" id="firstName" name="firstName" formControlName="firstName" placeholder="Contact First Name" required>
+		</div>
+	</div>
+	<div *ngIf="formErrors.firstName" class="alert alert-danger">
+			{{ formErrors.firstName }}
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-xs-3 hidden-xs" for="lastName">Last Name:</label>
+		<div class="col-xs-12 col-sm-9">
+			<input class="form-control col-xs-12 col-sm-9" id="lastName" name="lastName" formControlName="lastName" placeholder="Contact Last Name" required>
+		</div>
+	</div>
+    <div *ngIf="formErrors.lastName" class="alert alert-danger">
+			{{ formErrors.lastName }}
+	</div>
+	<div class="form-group">
+		<label class="control-label col-xs-3 hidden-xs" for="gender">Gender:</label>
+		<div class="col-xs-12 col-sm-9">
+			<input type="radio" formControlName="gender" name="gender" [value]="1" >Male <br>
+    		<input type="radio" formControlName="gender" name="gender" [value]="2" >Female
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-xs-3 hidden-xs" for="email">Email:</label>
+		<div class="col-xs-12 col-sm-9">
+			<input type="email" class="form-control col-xs-12 col-sm-9" id="email" name="email" formControlName="email" placeholder="Contact Email" required>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-xs-3 hidden-xs" for="phone">Phone:</label>
+		<div class="col-xs-12 col-sm-9">
+			<input class="form-control col-xs-12 col-sm-9" id="phone" name="phone" formControlName="phone" placeholder="Contact Phone" required>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-xs-3 hidden-xs" for="address">Address:</label>
+		<div class="col-xs-12 col-sm-9">
+			<input class="form-control col-xs-12 col-sm-9" id="address" name="address" formControlName="address" placeholder="Contact Address" required>
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-primary" [disabled]="!contactForm.valid">Submit</button>
+	<button type="button" class="btn btn-danger" (click)="resetForm()">Reset</button>
+  <button type="button" class="btn btn-default" (click)="goBack()">Cancel</button>
+</form>

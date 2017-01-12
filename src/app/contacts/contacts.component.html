@@ -1,0 +1,14 @@
+<div>
+<p>
+	Contacts List
+</p>
+<ul class="items" >
+    <li *ngFor="let contact of contacts" class="product" [class.selected]="contact.id === selectedId"  
+      (click)="selectItem(contact)" [title]="contact.firstName">
+      <span class="item-badge">{{contact.id}}</span> {{contact.firstName}}  {{contact.lastName}}
+      <span class="fa fa-times-circle btn-delete" (click)="deleteItem(contact.id); $event.stopPropagation()" 
+        aria-hidden="true" title="Click to delete this product.">
+      </span>
+    </li>
+  </ul>
+</div>
